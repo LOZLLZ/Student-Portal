@@ -1,9 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <head>
-      <title>Student Portal</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portal</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,8 +20,8 @@
         document.getElementById('lrnForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const lrn = document.getElementById('lrn').value;
-            localStorage.setItem('studentLRN', lrn);
-            window.location.href = 'student.html';
+            localStorage.setItem('studentLRN', lrn); // Save LRN to local storage
+            window.location.href = 'student.html'; // Redirect to student page
         });
     </script>
 </body>
