@@ -1,3 +1,6 @@
 ﻿LRN,Name,Grade,Numeracy
-987654321,Doe John,Grade 9,Non-numerate
-123456789,John Doe,Grade 7,Numerate
+987654321,Doe John,Grade 7,Non-numerate
+987654321,Doe John,Grade 8,Numerate
+987654321,Doe John,Grade 9,Highly Numerate
+123456789,John Doe,Grade 11,Numerate
+123456789,John Doe,Grade 11,Numerate
