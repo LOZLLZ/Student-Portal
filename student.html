@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1 id="studentName">Loading...</h1>
+
+        <h2>Select your Grade Level:</h2>
+        <div class="grade-buttons">
+            <button onclick="showNumeracy('Grade 7')">Grade 7</button>
+            <button onclick="showNumeracy('Grade 8')">Grade 8</button>
+            <button onclick="showNumeracy('Grade 9')">Grade 9</button>
+        </div>
+
+        <h2>Your Numeracy Status:</h2>
+        <p id="numeracyStatus">Please select a grade level.</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
