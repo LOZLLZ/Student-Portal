@@ -3,16 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Numeracy Results</title>
+    <title>Certificate of Recognition</title>
     <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Times New Roman', Times, serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4;
+        }
+        .certificate {
+            position: relative;
+            width: 1000px;
+            height: 700px;
+            background: url('IMAGE_4614.jpeg') no-repeat center center;
+            background-size: contain;
+        }
+        .student-name {
+            position: absolute;
+            top: 45%;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 36px;
+            font-weight: bold;
+        }
+        .numeracy-status {
+            position: absolute;
+            top: 60%;
+            left: 30%;
+            font-size: 22px;
+            font-style: italic;
+            font-weight: bold;
+        }
+        .date {
+            position: absolute;
+            bottom: 20%;
+            left: 54%;
+            font-size: 18px;
+        }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Numeracy Results</h1>
-        <p id="studentName">Loading...</p>
-        <p>Grade: <span id="gradeLevel">Loading...</span></p>
-        <p>Assessment Type: <span id="assessmentType">Loading...</span></p>
-        <p>Numeracy Status: <span id="numeracyStatus">Calculating...</span></p>
+
+    <div class="certificate">
+        <div class="student-name" id="studentName">(NAME OF STUDENT)</div>
+        <div class="numeracy-status" id="numeracyStatus">(NUMERACY STATUS)</div>
+        <div class="date" id="certificateDate">(DATE)</div>
     </div>
 
     <script src="script.js"></script>
