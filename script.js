@@ -37,7 +37,7 @@ async function loadStudentInfo() {
     console.log('Matched student:', student); // Debug
 
     const studentNameElement = document.getElementById('studentName');
-    studentNameElement.textContent = student ? `Welcome, ${student.Name}!` : 'Student not found.';
+    studentNameElement.textContent = student ? `${student.Name}` : 'Student not found.';
 }
 
 // Display grade on assessment page
