@@ -9,7 +9,7 @@ async function loadCSV() {
             throw new Error('Failed to fetch CSV');
         }
         const data = await response.text();
-        const rows = data.split('\n').slice(1); // Skip the header row
+        const rows = data.split('\n').slice(1); // Skip header row
         studentData = rows.map(row => {
             const [LRN, Name, Grade, Assessment, Numeracy] = row.split(',');
             return {
@@ -19,23 +19,28 @@ async function loadCSV() {
                 Assessment: Assessment?.trim(),
                 Numeracy: Numeracy?.trim()
             };
-        });
-        console.log('Loaded student data:', studentData); // Confirm data is loaded
+        }).filter(student => student.LRN); // Ensure no empty rows
+        console.log('Loaded student data:', studentData); // Debug CSV load
     } catch (error) {
         console.error('Error loading CSV:', error);
     }
 }
 
-// Display student info
+// Find student by LRN
 function loadStudentInfo() {
     const lrn = localStorage.getItem('studentLRN');
-    const student = studentData.find(s => s.LRN === lrn);
+    console.log('LRN from storage:', lrn); // Debug
 
-    if (student) {
-        document.getElementById('studentName').textContent = `Welcome, ${student.Name}!`;
-    } else {
-        document.getElementById('studentName').textContent = 'Student not found.';
+    if (!lrn) {
+        document.getElementById('studentName').textContent = 'No LRN found.';
+        return;
     }
+
+    const student = studentData.find(s => s.LRN === lrn);
+    console.log('Matched student:', student); // Debug
+
+    const studentNameElement = document.getElementById('studentName');
+    studentNameElement.textContent = student ? `Welcome, ${student.Name}!` : 'Student not found.';
 }
 
 // Display grade on assessment page
@@ -46,7 +51,7 @@ function loadAssessmentOptions() {
 
 // Display results on the results page
 async function displayResults() {
-    await loadCSV(); // Ensure CSV is fully loaded before displaying data
+    await loadCSV(); // Ensure CSV loads fully
 
     const lrn = localStorage.getItem('studentLRN');
     const grade = localStorage.getItem('selectedGrade');
@@ -65,11 +70,7 @@ async function displayResults() {
         s.Assessment === assessment
     );
 
-    if (student) {
-        document.getElementById('numeracyStatus').textContent = student.Numeracy;
-    } else {
-        document.getElementById('numeracyStatus').textContent = 'No data available.';
-    }
+    document.getElementById('numeracyStatus').textContent = student ? student.Numeracy : 'No data available.';
 }
 
 // Initialize on page load
