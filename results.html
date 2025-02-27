@@ -3,11 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificate of Recognition</title>
+    <title>Numeracy Assessment Certificate</title>
     <link rel="stylesheet" href="style.css">
     <style>
         body {
-            font-family: 'Times New Roman', Times, serif;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -15,45 +14,48 @@
             margin: 0;
             background-color: #f4f4f4;
         }
-        .certificate {
+        .certificate-container {
             position: relative;
             width: 1000px;
             height: 700px;
             background: url('IMG_4614.jpeg') no-repeat center center;
-            background-size: contain;
+            background-size: cover;
         }
-        .student-name {
+        .certificate-text {
             position: absolute;
-            top: 45%;
-            left: 50%;
-            transform: translateX(-50%);
-            font-size: 36px;
+            font-family: 'Times New Roman', serif;
+            color: black;
+        }
+        #studentName {
+            font-size: 32px;
             font-weight: bold;
+            top: 250px;
+            left: 400px;
         }
-        .numeracy-status {
-            position: absolute;
-            top: 60%;
-            left: 30%;
-            font-size: 22px;
+        #numeracyStatus {
             font-style: italic;
-            font-weight: bold;
+            font-size: 24px;
+            top: 350px;
+            left: 350px;
         }
-        .date {
-            position: absolute;
-            bottom: 20%;
-            left: 54%;
-            font-size: 18px;
+        #assessmentType {
+            font-size: 24px;
+            top: 400px;
+            left: 650px;
         }
     </style>
 </head>
 <body>
-
-    <div class="certificate">
-        <div class="student-name" id="studentName">(NAME OF STUDENT)</div>
-        <div class="numeracy-status" id="numeracyStatus">(NUMERACY STATUS)</div>
-        <div class="date" id="certificateDate">(DATE)</div>
+    <div class="certificate-container">
+        <div id="studentName" class="certificate-text">[Student Name]</div>
+        <div id="numeracyStatus" class="certificate-text">[Numeracy Status]</div>
+        <div id="assessmentType" class="certificate-text">[Assessment Type]</div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        document.getElementById('studentName').textContent = localStorage.getItem('studentName') || 'Student Name';
+        document.getElementById('numeracyStatus').textContent = localStorage.getItem('numeracyStatus') || 'Numeracy Status';
+        document.getElementById('assessmentType').textContent = localStorage.getItem('assessmentType') || 'Assessment Type';
+    </script>
 </body>
 </html>
