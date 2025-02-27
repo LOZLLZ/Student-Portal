@@ -19,6 +19,12 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Function to save selected grade and navigate to assessment.html
+        function selectGrade(grade) {
+            localStorage.setItem('selectedGrade', grade); // Store selected grade
+            window.location.href = 'assessment.html'; // Redirect to assessment page
+        }
+    </script>
 </body>
 </html>
