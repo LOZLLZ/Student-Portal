@@ -73,6 +73,27 @@ async function displayResults() {
     document.getElementById('numeracyStatus').textContent = student ? student.Numeracy : 'No data available.';
 }
 
+// Populate certificate with student name and numeracy status
+async function populateCertificate() {
+    await loadCSV(); // Ensure CSV is loaded
+
+    const lrn = localStorage.getItem('studentLRN');
+    console.log('LRN for certificate:', lrn); // Debug
+
+    const student = studentData.find(s => s.LRN === lrn);
+    console.log('Student data for certificate:', student); // Debug
+
+    if (student) {
+        document.getElementById('studentName').textContent = student.Name;
+        document.getElementById('numeracyStatus').textContent = student.Numeracy;
+        document.getElementById('certificateDate').textContent = "August 19–23, 2024";
+    } else {
+        document.getElementById('studentName').textContent = 'Student not found';
+        document.getElementById('numeracyStatus').textContent = 'N/A';
+        document.getElementById('certificateDate').textContent = '';
+    }
+}
+
 // Initialize functions on page load
 document.addEventListener('DOMContentLoaded', async () => {
     if (document.getElementById('studentName') && !document.getElementById('gradeLevel')) {
@@ -81,7 +102,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (document.getElementById('gradeLevel') && !document.getElementById('assessmentType')) {
         loadAssessmentOptions();
     }
-    if (document.getElementById('numeracyStatus')) {
+    if (document.getElementById('numeracyStatus') && document.getElementById('gradeLevel')) {
         displayResults();
+    }
+    if (document.getElementById('certificateDate')) {
+        await populateCertificate();
     }
 });
