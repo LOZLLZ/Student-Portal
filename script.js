@@ -26,8 +26,10 @@ async function loadCSV() {
     }
 }
 
-// Find and display student info on student.html
-function loadStudentInfo() {
+// Load student info after CSV is fully loaded
+async function loadStudentInfo() {
+    await loadCSV(); // Ensure data is loaded
+
     const lrn = localStorage.getItem('studentLRN');
     console.log('LRN from storage:', lrn); // Debug
 
@@ -35,11 +37,7 @@ function loadStudentInfo() {
     console.log('Matched student:', student); // Debug
 
     const studentNameElement = document.getElementById('studentName');
-    if (student) {
-        studentNameElement.textContent = `Welcome, ${student.Name}!`;
-    } else {
-        studentNameElement.textContent = 'Student not found.';
-    }
+    studentNameElement.textContent = student ? `Welcome, ${student.Name}!` : 'Student not found.';
 }
 
 // Display grade on assessment page
@@ -69,7 +67,6 @@ async function displayResults() {
         s.Assessment === assessment
     );
 
-    // Update the page with the data
     document.getElementById('studentName').textContent = student ? `Student: ${student.Name}` : 'Student not found';
     document.getElementById('gradeLevel').textContent = grade || 'N/A';
     document.getElementById('assessmentType').textContent = assessment || 'N/A';
@@ -78,9 +75,8 @@ async function displayResults() {
 
 // Initialize functions on page load
 document.addEventListener('DOMContentLoaded', async () => {
-    await loadCSV();
-    if (document.getElementById('studentName')) {
-        loadStudentInfo();
+    if (document.getElementById('studentName') && !document.getElementById('gradeLevel')) {
+        await loadStudentInfo();
     }
     if (document.getElementById('gradeLevel') && !document.getElementById('assessmentType')) {
         loadAssessmentOptions();
