@@ -36,7 +36,7 @@ function loadStudentInfo() {
     const student = studentData.find(s => s.LRN === lrn);
 
     if (student) {
-        document.getElementById('studentName').textContent = Welcome, ${student.Name}!;
+        document.getElementById('studentName').textContent = `Welcome, ${student.Name}!`;
     } else {
         document.getElementById('studentName').textContent = 'Student not found.';
     }
