@@ -5,32 +5,28 @@ let studentData = [];
 async function loadCSV() {
     try {
         const response = await fetch('data.csv');
+        if (!response.ok) {
+            throw new Error('Failed to fetch CSV');
+        }
         const data = await response.text();
         const rows = data.split('\n').slice(1); // Skip the header row
         studentData = rows.map(row => {
             const [LRN, Name, Grade, Assessment, Numeracy] = row.split(',');
             return {
-                LRN: LRN.trim(),
-                Name: Name.trim(),
-                Grade: Grade.trim(),
-                Assessment: Assessment.trim(),
-                Numeracy: Numeracy.trim()
+                LRN: LRN?.trim(),
+                Name: Name?.trim(),
+                Grade: Grade?.trim(),
+                Assessment: Assessment?.trim(),
+                Numeracy: Numeracy?.trim()
             };
         });
+        console.log('Loaded student data:', studentData); // Confirm data is loaded
     } catch (error) {
         console.error('Error loading CSV:', error);
     }
 }
 
-// Store LRN and redirect to student page
-document.getElementById('lrnForm')?.addEventListener('submit', function (e) {
-    e.preventDefault();
-    const lrn = document.getElementById('lrn').value.trim();
-    localStorage.setItem('studentLRN', lrn);
-    window.location.href = 'student.html';
-});
-
-// Display student name and load grade buttons
+// Display student info
 function loadStudentInfo() {
     const lrn = localStorage.getItem('studentLRN');
     const student = studentData.find(s => s.LRN === lrn);
@@ -42,34 +38,32 @@ function loadStudentInfo() {
     }
 }
 
-// Store selected grade and go to assessment page
-function showAssessment(grade) {
-    localStorage.setItem('selectedGrade', grade);
-    window.location.href = 'assessment.html';
-}
-
-// Display assessment options (Pre, Mid, Post)
+// Display grade on assessment page
 function loadAssessmentOptions() {
     const grade = localStorage.getItem('selectedGrade');
-    document.getElementById('gradeLevel').textContent = grade;
+    document.getElementById('gradeLevel').textContent = grade || 'N/A';
 }
 
-// Store selected assessment and show numeracy level
-function showNumeracy(assessment) {
-    localStorage.setItem('assessmentType', assessment);
-    window.location.href = 'result.html';
-}
+// Display results on the results page
+async function displayResults() {
+    await loadCSV(); // Ensure CSV is fully loaded before displaying data
 
-// Display numeracy status based on Grade and Assessment
-function displayResults() {
     const lrn = localStorage.getItem('studentLRN');
     const grade = localStorage.getItem('selectedGrade');
     const assessment = localStorage.getItem('assessmentType');
 
-    document.getElementById('gradeLevel').textContent = grade;
-    document.getElementById('assessmentType').textContent = assessment;
+    console.log('LRN:', lrn);
+    console.log('Grade:', grade);
+    console.log('Assessment:', assessment);
 
-    const student = studentData.find(s => s.LRN === lrn && s.Grade === grade && s.Assessment === assessment);
+    document.getElementById('gradeLevel').textContent = grade || 'N/A';
+    document.getElementById('assessmentType').textContent = assessment || 'N/A';
+
+    const student = studentData.find(s => 
+        s.LRN === lrn &&
+        s.Grade === grade &&
+        s.Assessment === assessment
+    );
 
     if (student) {
         document.getElementById('numeracyStatus').textContent = student.Numeracy;
@@ -78,17 +72,16 @@ function displayResults() {
     }
 }
 
-// Initialize data and event listeners
-document.addEventListener('DOMContentLoaded', () => {
-    loadCSV().then(() => {
-        if (document.getElementById('studentName')) {
-            loadStudentInfo();
-        }
-        if (document.getElementById('gradeLevel')) {
-            loadAssessmentOptions();
-        }
-        if (document.getElementById('numeracyStatus')) {
-            displayResults();
-        }
-    });
+// Initialize on page load
+document.addEventListener('DOMContentLoaded', async () => {
+    await loadCSV();
+    if (document.getElementById('studentName')) {
+        loadStudentInfo();
+    }
+    if (document.getElementById('gradeLevel') && !document.getElementById('assessmentType')) {
+        loadAssessmentOptions();
+    }
+    if (document.getElementById('numeracyStatus')) {
+        displayResults();
+    }
 });
