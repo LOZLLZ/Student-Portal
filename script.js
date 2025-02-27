@@ -26,32 +26,41 @@ async function loadCSV() {
     }
 }
 
-// Find student by LRN
+// Initialize student page
+async function initializeStudentPage() {
+    await loadCSV(); // Ensure CSV loads fully before anything else
+    loadStudentInfo();
+}
+
+// Find and display student info by LRN
 function loadStudentInfo() {
     const lrn = localStorage.getItem('studentLRN');
-    console.log('LRN from storage:', lrn); // Debug
+    console.log('LRN from storage:', lrn); // Debug LRN retrieval
 
+    const studentNameElement = document.getElementById('studentName');
     if (!lrn) {
-        document.getElementById('studentName').textContent = 'No LRN found.';
+        studentNameElement.textContent = 'No LRN found.';
         return;
     }
 
-    const student = studentData.find(s => s.LRN === lrn);
-    console.log('Matched student:', student); // Debug
+    const student = studentData.find(s => s.LRN === lrn?.trim());
+    console.log('Matched student:', student); // Debug matched student
 
-    const studentNameElement = document.getElementById('studentName');
     studentNameElement.textContent = student ? `Welcome, ${student.Name}!` : 'Student not found.';
 }
 
-// Display grade on assessment page
+// Load assessment page options (grade level)
 function loadAssessmentOptions() {
     const grade = localStorage.getItem('selectedGrade');
-    document.getElementById('gradeLevel').textContent = grade || 'N/A';
+    const gradeLevelElement = document.getElementById('gradeLevel');
+    if (gradeLevelElement) {
+        gradeLevelElement.textContent = grade || 'N/A';
+    }
 }
 
-// Display results on the results page
+// Display results page (grade, assessment, and numeracy)
 async function displayResults() {
-    await loadCSV(); // Ensure CSV loads fully
+    await loadCSV(); // Ensure CSV is fully loaded before searching
 
     const lrn = localStorage.getItem('studentLRN');
     const grade = localStorage.getItem('selectedGrade');
@@ -65,19 +74,20 @@ async function displayResults() {
     document.getElementById('assessmentType').textContent = assessment || 'N/A';
 
     const student = studentData.find(s => 
-        s.LRN === lrn &&
-        s.Grade === grade &&
-        s.Assessment === assessment
+        s.LRN === lrn?.trim() &&
+        s.Grade === grade?.trim() &&
+        s.Assessment === assessment?.trim()
     );
 
     document.getElementById('numeracyStatus').textContent = student ? student.Numeracy : 'No data available.';
 }
 
-// Initialize on page load
+// Initialize the correct functions based on the page
 document.addEventListener('DOMContentLoaded', async () => {
     await loadCSV();
+
     if (document.getElementById('studentName')) {
-        loadStudentInfo();
+        initializeStudentPage();
     }
     if (document.getElementById('gradeLevel') && !document.getElementById('assessmentType')) {
         loadAssessmentOptions();
