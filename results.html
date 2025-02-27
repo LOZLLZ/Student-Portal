@@ -6,57 +6,74 @@
     <title>Numeracy Assessment Certificate</title>
     <style>
     body {
-        margin: 0;
-        padding: 0;
-        background: url('IMG_4614.jpeg') no-repeat center center;
-        background-size: cover; /* or 'contain' depending on your preference */
-        height: 100vh;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
+    margin: 0;
+    padding: 0;
+    background: url('IMG_4614.jpeg') no-repeat center center;
+    background-size: cover;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
 
-    .certificate {
-        position: absolute;
-    }
+/* Container to hold all dynamic text */
+.certificate {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
 
-    .student-name, .numeracy-status, .assessment-type {
-        position: absolute;
-        font-size: 20px;
-        color: black;
-        font-weight: bold;
-    }
+/* Styling for dynamic content */
+.student-name {
+    position: absolute;
+    top: 43%; /* Adjusted based on the certificate */
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 24px;
+    font-weight: bold;
+    color: black;
+}
 
-    .student-name {
-        top: 40%; /* Adjust to match the certificate's layout */
-        left: 50%;
-        transform: translateX(-50%);
-    }
+.numeracy-status {
+    position: absolute;
+    top: 55%;
+    left: 18%;
+    font-size: 18px;
+    font-style: italic;
+    color: black;
+}
 
-    .numeracy-status {
-        top: 50%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-
-    .assessment-type {
-        top: 60%;
-        left: 50%;
-        transform: translateX(-50%);
-    }
-</style>
+.assessment-type {
+    position: absolute;
+    top: 47%;
+    left: 52%;
+    font-size: 16px;
+    color: black;
+    transform: translateX(-50%);
+}
+        </style>
 </head>
 <body>
     <div class="certificate">
-        <div class="student-name" id="studentName">Student Name</div>
-        <div class="numeracy-status" id="numeracyStatus">Numeracy Status</div>
+        <!-- Student's name -->
+        <div class="student-name" id="studentName">John Doe</div>
+
+        <!-- Numeracy status (Non-Numerate, Numerate, Highly Numerate) -->
+        <div class="numeracy-status" id="numeracyStatus">Numerate</div>
+
+        <!-- Assessment type (Pre-Test, Mid Year, Post Test) -->
         <div class="assessment-type" id="assessmentType">Pre-Test</div>
     </div>
+</body>
 
-    <script>
-        document.getElementById('studentName').textContent = localStorage.getItem('studentName') || '';
-        document.getElementById('numeracyStatus').textContent = localStorage.getItem('numeracyStatus') || '';
-        document.getElementById('assessmentType').textContent = localStorage.getItem('assessmentType') || '';
-    </script>
+<script>
+    // Example of dynamically inserting values (from your logic)
+    document.getElementById('studentName').textContent = "John Doe";
+    document.getElementById('numeracyStatus').textContent = "Numerate";
+    document.getElementById('assessmentType').textContent = "Pre-Test";
+</script>
 </body>
 </html>
