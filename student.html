@@ -3,13 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Student Page</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Select Grade Level</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1 id="studentName">Loading...</h1>
-
         <h2>Select your Grade Level:</h2>
         <div class="grade-buttons">
             <button onclick="selectGrade('Grade 7')">Grade 7</button>
@@ -21,11 +19,6 @@
         </div>
     </div>
 
-    <script>
-        function selectGrade(grade) {
-            localStorage.setItem('selectedGrade', grade); // Store the selected grade
-            window.location.href = 'assessment.html'; // Redirect to the next page
-        }
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
