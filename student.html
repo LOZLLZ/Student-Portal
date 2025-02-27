@@ -12,18 +12,20 @@
 
         <h2>Select your Grade Level:</h2>
         <div class="grade-buttons">
-            <button onclick="showNumeracy('Grade 7')">Grade 7</button>
-            <button onclick="showNumeracy('Grade 8')">Grade 8</button>
-            <button onclick="showNumeracy('Grade 9')">Grade 9</button>
-            <button onclick="showNumeracy('Grade 10')">Grade 10</button>
-            <button onclick="showNumeracy('Grade 11')">Grade 11</button>
-            <button onclick="showNumeracy('Grade 12')">Grade 12</button>
+            <button onclick="selectGrade('Grade 7')">Grade 7</button>
+            <button onclick="selectGrade('Grade 8')">Grade 8</button>
+            <button onclick="selectGrade('Grade 9')">Grade 9</button>
+            <button onclick="selectGrade('Grade 10')">Grade 10</button>
+            <button onclick="selectGrade('Grade 11')">Grade 11</button>
+            <button onclick="selectGrade('Grade 12')">Grade 12</button>
         </div>
-
-        <h2>Your Numeracy Status:</h2>
-        <p id="numeracyStatus">Please select a grade level.</p>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        function selectGrade(grade) {
+            localStorage.setItem('selectedGrade', grade); // Store the selected grade
+            window.location.href = 'assessment.html'; // Redirect to the next page
+        }
+    </script>
 </body>
 </html>
