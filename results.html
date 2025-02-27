@@ -3,78 +3,59 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Numeracy Assessment Certificate</title>
+    <title>Numeracy Assessment Results</title>
     <style>
-    body {
-    margin: 0;
-    padding: 0;
-    background: url('IMG_4614.jpeg') no-repeat center center;
-    background-size: cover;
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: relative;
-}
-
-/* Container to hold all dynamic text */
-.certificate {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-/* Styling for dynamic content */
-.student-name {
-    position: absolute;
-    top: 43%; /* Adjusted based on the certificate */
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 24px;
-    font-weight: bold;
-    color: black;
-}
-
-.numeracy-status {
-    position: absolute;
-    top: 55%;
-    left: 18%;
-    font-size: 18px;
-    font-style: italic;
-    color: black;
-}
-
-.assessment-type {
-    position: absolute;
-    top: 47%;
-    left: 52%;
-    font-size: 16px;
-    color: black;
-    transform: translateX(-50%);
-}
-        </style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        .certificate {
+            background: url('IMG_4614.jpeg') no-repeat center center;
+            background-size: cover;
+            width: 100%;
+            max-width: 800px;
+            height: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+        }
+        .certificate-text {
+            position: absolute;
+        }
+        #studentName {
+            font-size: 24px;
+            font-weight: bold;
+            top: 40%;
+        }
+        #numeracyStatus {
+            font-size: 20px;
+            top: 50%;
+        }
+        #assessmentType {
+            font-size: 20px;
+            top: 55%;
+        }
+        #certificateDate {
+            font-size: 18px;
+            top: 75%;
+        }
+    </style>
 </head>
 <body>
+
+    <h1>Numeracy Assessment Results</h1>
+
     <div class="certificate">
-        <!-- Student's name -->
-        <div class="student-name" id="studentName">John Doe</div>
-
-        <!-- Numeracy status (Non-Numerate, Numerate, Highly Numerate) -->
-        <div class="numeracy-status" id="numeracyStatus">Numerate</div>
-
-        <!-- Assessment type (Pre-Test, Mid Year, Post Test) -->
-        <div class="assessment-type" id="assessmentType">Pre-Test</div>
+        <p id="studentName" class="certificate-text">Loading...</p>
+        <p id="numeracyStatus" class="certificate-text">Loading...</p>
+        <p id="assessmentType" class="certificate-text">Loading...</p>
+        <p id="certificateDate" class="certificate-text">Loading...</p>
     </div>
-</body>
 
-<script>
-    // Example of dynamically inserting values (from your logic)
-    document.getElementById('studentName').textContent = "John Doe";
-    document.getElementById('numeracyStatus').textContent = "Numerate";
-    document.getElementById('assessmentType').textContent = "Pre-Test";
-</script>
     <script src="script.js"></script>
 </body>
 </html>
