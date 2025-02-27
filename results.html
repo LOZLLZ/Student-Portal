@@ -18,7 +18,7 @@
             position: relative;
             width: 1000px;
             height: 700px;
-            background: url('IMG_4614.jpeg') no-repeat center center;
+            background: url('certificate-background.png') no-repeat center center;
             background-size: cover;
         }
         .certificate-text {
@@ -27,35 +27,35 @@
             color: black;
         }
         #studentName {
-            font-size: 32px;
+            font-size: 28px;
             font-weight: bold;
-            top: 250px;
+            top: 290px; /* Adjusted to below "Certificate of Recognition" */
             left: 400px;
         }
         #numeracyStatus {
             font-style: italic;
             font-size: 24px;
-            top: 350px;
-            left: 350px;
+            top: 370px; /* Adjusted to align with "Numeracy Status" line */
+            left: 420px;
         }
         #assessmentType {
             font-size: 24px;
-            top: 400px;
+            top: 410px; /* Adjusted to align with "Mid" area */
             left: 650px;
         }
     </style>
 </head>
 <body>
     <div class="certificate-container">
-        <div id="studentName" class="certificate-text">[Student Name]</div>
-        <div id="numeracyStatus" class="certificate-text">[Numeracy Status]</div>
-        <div id="assessmentType" class="certificate-text">[Assessment Type]</div>
+        <div id="studentName" class="certificate-text"></div>
+        <div id="numeracyStatus" class="certificate-text"></div>
+        <div id="assessmentType" class="certificate-text"></div>
     </div>
 
     <script>
-        document.getElementById('studentName').textContent = localStorage.getItem('studentName') || 'Student Name';
-        document.getElementById('numeracyStatus').textContent = localStorage.getItem('numeracyStatus') || 'Numeracy Status';
-        document.getElementById('assessmentType').textContent = localStorage.getItem('assessmentType') || 'Assessment Type';
+        document.getElementById('studentName').textContent = localStorage.getItem('studentName') || '';
+        document.getElementById('numeracyStatus').textContent = localStorage.getItem('numeracyStatus') || '';
+        document.getElementById('assessmentType').textContent = localStorage.getItem('assessmentType') || '';
     </script>
 </body>
 </html>
