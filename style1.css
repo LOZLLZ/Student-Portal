@@ -15,42 +15,44 @@ body {
 .certificate {
     width: 100vw;
     height: 100vh;
-    padding: 5rem;
+    padding: 3rem;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
+    justify-content: center;
 }
 
-/* Header */
-header {
-    text-align: center;
+/* School Logo */
+.logo {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
 }
 
-.school-info h1 {
-    font-size: 1.2rem;
-    font-weight: bold;
-    text-transform: uppercase;
-    margin-bottom: 0.5rem;
+.logo img {
+    width: 120px;
+    height: auto;
 }
 
-.school-info h2 {
-    font-size: 1.1rem;
-    font-weight: normal;
-    margin-bottom: 2rem;
+/* Certificate Header */
+.certificate-header h2,
+.certificate-header h3,
+.certificate-header p,
+.certificate-header h4 {
+    margin: 0.3rem 0;
 }
 
 /* Certificate Title */
-.cert-title {
-    font-size: 3rem;
+.certificate-title {
+    font-size: 2.5rem;
     font-weight: bold;
-    margin-bottom: 1rem;
+    margin: 1.2rem 0;
 }
 
 /* Presented To */
-.presented {
-    font-size: 1.3rem;
-    margin-bottom: 1rem;
+.presented-to {
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
 }
 
 #studentName {
@@ -59,10 +61,11 @@ header {
     margin-bottom: 1rem;
 }
 
+/* Description */
 .description {
-    font-size: 1.2rem;
-    line-height: 1.6;
-    margin-bottom: 2rem;
+    font-size: 1.1rem;
+    line-height: 1.4;
+    margin-bottom: 1.5rem;
 }
 
 .description strong {
@@ -71,15 +74,19 @@ header {
 
 /* Date */
 .date {
-    font-size: 1.2rem;
-    margin-bottom: 3rem;
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
 }
 
-/* Footer */
+/* Signature */
+.signature {
+    margin-top: 1rem;
+}
+
 .school-head {
-    font-size: 1.5rem;
+    font-size: 1.4rem;
     font-weight: bold;
-    margin-bottom: 0.5rem;
+    margin-bottom: 0.3rem;
 }
 
 .school-title {
