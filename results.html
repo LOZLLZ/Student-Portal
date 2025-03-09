@@ -3,59 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Numeracy Assessment Results</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            padding: 50px;
-        }
-        .certificate {
-            background: url('IMG_4614.jpeg') no-repeat center center;
-            background-size: cover;
-            width: 100%;
-            max-width: 800px;
-            height: 600px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-        .certificate-text {
-            position: absolute;
-        }
-        #studentName {
-            font-size: 24px;
-            font-weight: bold;
-            top: 40%;
-        }
-        #numeracyStatus {
-            font-size: 20px;
-            top: 50%;
-        }
-        #assessmentType {
-            font-size: 20px;
-            top: 55%;
-        }
-        #certificateDate {
-            font-size: 18px;
-            top: 75%;
-        }
-    </style>
+    <title>Numeracy Assessment Certificate</title>
+    <link rel="stylesheet" href="style1.css">
 </head>
 <body>
-
-    <h1>Numeracy Assessment Results</h1>
-
     <div class="certificate">
-        <p id="studentName" class="certificate-text">Loading...</p>
-        <p id="numeracyStatus" class="certificate-text">Loading...</p>
-        <p id="assessmentType" class="certificate-text">Loading...</p>
-        <p id="certificateDate" class="certificate-text">Loading...</p>
+        <header>
+            <img src="deped_logo.png" alt="DepED Logo" class="logo">
+            <div class="school-info">
+                <h2>Republic of the Philippines</h2>
+                <h3>Department of Education</h3>
+                <p>Region IV-A CALABARZON</p>
+                <p>City Schools Division Office of Antipolo</p>
+                <h1>ANTIPOLO CITY NATIONAL SCIENCE AND TECHNOLOGY HIGH SCHOOL</h1>
+            </div>
+            <img src="school_logo.png" alt="School Logo" class="logo">
+        </header>
+
+        <main>
+            <p class="certify">This</p>
+            <h2 class="cert-title">Certificate of Recognition</h2>
+            <p class="presented">is presented to</p>
+            <h2 id="studentName">(NAME OF STUDENT)</h2>
+            <p class="description">
+                for being classified as a/an <strong><span id="numeracyStatus">AVERAGE NUMERATE</span></strong>
+                during the administration of the Numeracy Assessment
+                (<span id="assessmentType">Pre-Test</span>) held at Antipolo City National Science and Technology High School.
+            </p>
+            <p class="date">
+                Given this <span id="certificateDate">31st</span> day of January, 2025 at School Name.
+            </p>
+        </main>
+
+        <footer>
+            <p class="school-head">JANICE P. MARAVILLA</p>
+            <p class="school-title">School Head</p>
+        </footer>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        // Get student data from localStorage
+        const studentName = localStorage.getItem('studentName') || '(NAME OF STUDENT)';
+        const numeracyStatus = localStorage.getItem('numeracyStatus') || 'AVERAGE NUMERATE';
+        const assessmentType = localStorage.getItem('assessmentType') || 'Pre-Test';
+        const certificateDate = localStorage.getItem('certificateDate') || '31st';
+
+        // Inject data into the certificate
+        document.getElementById('studentName').textContent = studentName;
+        document.getElementById('numeracyStatus').textContent = numeracyStatus;
+        document.getElementById('assessmentType').textContent = assessmentType;
+        document.getElementById('certificateDate').textContent = certificateDate;
+    </script>
 </body>
 </html>
