@@ -31,8 +31,7 @@ async function displayStudentName() {
     const lrn = localStorage.getItem('studentLRN');
     const student = studentData.find(s => s.LRN === lrn);
     const studentName = document.getElementById('student-name');
-    if (studentName) {
-        studentName.textContent = student ? student.Name : 'Student';
+    studentName.textContent = student ? `${student.Name}` : 'Student';
     }
 }
 
