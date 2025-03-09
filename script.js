@@ -32,17 +32,13 @@ async function displayStudentName() {
     const student = studentData.find(s => s.LRN === lrn);
     const welcomeMessage = document.getElementById('welcome-message');
 
-    if (student) {
-        welcomeMessage.textContent = `Welcome, ${student.Name}`;
-    } else {
-        welcomeMessage.textContent = 'Welcome, Student';
-    }
+    welcomeMessage.textContent = student ? `Welcome, ${student.Name}` : 'Welcome, Student';
 }
 
 // Save selected grade and redirect to assessment.html
 document.addEventListener('DOMContentLoaded', () => {
     if (document.getElementById('welcome-message')) {
-        displayStudentName(); // Show student's name on student.html
+        displayStudentName();
     }
 
     const gradeLinks = document.querySelectorAll('.grade-link');
@@ -72,9 +68,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function loadAssessmentOptions() {
     const grade = localStorage.getItem('selectedGrade');
     const gradeLevelElement = document.getElementById('gradeLevel');
-    if (gradeLevelElement) {
-        gradeLevelElement.textContent = grade || 'N/A';
-    }
+    gradeLevelElement.textContent = grade || 'N/A';
 }
 
 // Display results on results.html
@@ -84,13 +78,13 @@ async function displayResults() {
     const grade = localStorage.getItem('selectedGrade');
     const assessment = localStorage.getItem('assessmentType');
 
-    const student = studentData.find(s => 
+    const student = studentData.find(s =>
         s.LRN === lrn &&
         s.Grade === grade &&
         s.Assessment === assessment
     );
 
-    document.getElementById('studentName').textContent = student ? `Student: ${student.Name}` : 'Student not found';
+    document.getElementById('studentName').textContent = student ? student.Name : 'Student not found';
     document.getElementById('gradeLevel').textContent = grade || 'N/A';
     document.getElementById('assessmentType').textContent = assessment || 'N/A';
     document.getElementById('numeracyStatus').textContent = student ? student.Numeracy : 'No data available.';
@@ -105,15 +99,18 @@ async function populateCertificate() {
     if (student) {
         document.getElementById('studentName').textContent = student.Name;
         document.getElementById('numeracyStatus').textContent = student.Numeracy;
-        document.getElementById('certificateDate').textContent = "August 19–23, 2024";
+        document.getElementById('assessmentType').textContent = localStorage.getItem('assessmentType') || 'Pre-Test';
+        document.getElementById('certificateDate').textContent = 'August 19–23, 2024';
     } else {
         document.getElementById('studentName').textContent = 'Student not found';
         document.getElementById('numeracyStatus').textContent = 'N/A';
+        document.getElementById('assessmentType').textContent = 'N/A';
         document.getElementById('certificateDate').textContent = '';
     }
-    // Save selected grade and redirect to assessment.html
+}
+
+// Save selected grade and redirect to assessment.html
 function selectGrade(grade) {
     localStorage.setItem('selectedGrade', grade);
     window.location.href = 'assessment.html';
-}
 }
