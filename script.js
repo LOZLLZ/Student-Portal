@@ -111,4 +111,9 @@ async function populateCertificate() {
         document.getElementById('numeracyStatus').textContent = 'N/A';
         document.getElementById('certificateDate').textContent = '';
     }
+    // Save selected grade and redirect to assessment.html
+function selectGrade(grade) {
+    localStorage.setItem('selectedGrade', grade);
+    window.location.href = 'assessment.html';
+}
 }
