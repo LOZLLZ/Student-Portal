@@ -31,7 +31,7 @@ async function displayStudentName() {
     const lrn = localStorage.getItem('studentLRN');
     const student = studentData.find(s => s.LRN === lrn);
     const welcomeMessage = document.getElementById('welcome-message');
-    welcomeMessage.textContent = student ? `${student.Name}` : 'Student';
+    welcomeMessage.textContent = student ? `Welcome, ${student.Name}` : 'Welcome, Student';
 }
 
 // Save selected grade and redirect to assessment.html
