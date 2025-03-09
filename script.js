@@ -19,40 +19,56 @@ async function loadCSV() {
                 Assessment: Assessment?.trim(),
                 Numeracy: Numeracy?.trim()
             };
-        }).filter(student => student.LRN); // Ensure no empty rows
-        console.log('Loaded student data:', studentData); // Debug CSV load
+        }).filter(student => student.LRN); // Remove empty rows
     } catch (error) {
         console.error('Error loading CSV:', error);
     }
 }
 
-// Load student info after CSV is fully loaded
-async function loadStudentInfo() {
-    await loadCSV(); // Ensure data is loaded
-
+// Display student's name on student.html
+async function displayStudentName() {
+    await loadCSV();
     const lrn = localStorage.getItem('studentLRN');
-    console.log('LRN from storage:', lrn); // Debug
-
     const student = studentData.find(s => s.LRN === lrn);
-    console.log('Matched student:', student); // Debug
-
-    const studentNameElement = document.getElementById('studentName');
-    const welcomeMessageElement = document.getElementById('welcome-message');
+    const welcomeMessage = document.getElementById('welcome-message');
 
     if (student) {
-        studentNameElement.textContent = student.Name;
-        if (welcomeMessageElement) {
-            welcomeMessageElement.textContent = `Welcome, ${student.Name}!`;
-        }
+        welcomeMessage.textContent = `Welcome, ${student.Name}`;
     } else {
-        studentNameElement.textContent = 'Student not found.';
-        if (welcomeMessageElement) {
-            welcomeMessageElement.textContent = 'Welcome, Student!';
-        }
+        welcomeMessage.textContent = 'Welcome, Student';
     }
 }
 
-// Display grade on assessment page
+// Save selected grade and redirect to assessment.html
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('welcome-message')) {
+        displayStudentName(); // Show student's name on student.html
+    }
+
+    const gradeLinks = document.querySelectorAll('.grade-link');
+    gradeLinks.forEach(link => {
+        link.addEventListener('click', (e) => {
+            e.preventDefault();
+            const selectedGrade = link.getAttribute('data-grade');
+            localStorage.setItem('selectedGrade', selectedGrade);
+            window.location.href = 'assessment.html';
+        });
+    });
+
+    if (document.getElementById('gradeLevel')) {
+        loadAssessmentOptions();
+    }
+
+    if (document.getElementById('numeracyStatus')) {
+        displayResults();
+    }
+
+    if (document.getElementById('certificateDate')) {
+        populateCertificate();
+    }
+});
+
+// Display grade on assessment.html
 function loadAssessmentOptions() {
     const grade = localStorage.getItem('selectedGrade');
     const gradeLevelElement = document.getElementById('gradeLevel');
@@ -61,17 +77,12 @@ function loadAssessmentOptions() {
     }
 }
 
-// Display results on results.html (including student name)
+// Display results on results.html
 async function displayResults() {
-    await loadCSV(); // Ensure CSV data is loaded
-
+    await loadCSV();
     const lrn = localStorage.getItem('studentLRN');
     const grade = localStorage.getItem('selectedGrade');
     const assessment = localStorage.getItem('assessmentType');
-
-    console.log('LRN:', lrn);
-    console.log('Grade:', grade);
-    console.log('Assessment:', assessment);
 
     const student = studentData.find(s => 
         s.LRN === lrn &&
@@ -85,15 +96,11 @@ async function displayResults() {
     document.getElementById('numeracyStatus').textContent = student ? student.Numeracy : 'No data available.';
 }
 
-// Populate certificate with student name and numeracy status
+// Populate certificate on certificate.html
 async function populateCertificate() {
-    await loadCSV(); // Ensure CSV is loaded
-
+    await loadCSV();
     const lrn = localStorage.getItem('studentLRN');
-    console.log('LRN for certificate:', lrn); // Debug
-
     const student = studentData.find(s => s.LRN === lrn);
-    console.log('Student data for certificate:', student); // Debug
 
     if (student) {
         document.getElementById('studentName').textContent = student.Name;
@@ -105,19 +112,3 @@ async function populateCertificate() {
         document.getElementById('certificateDate').textContent = '';
     }
 }
-
-// Initialize functions on page load
-document.addEventListener('DOMContentLoaded', async () => {
-    if (document.getElementById('studentName') && !document.getElementById('gradeLevel')) {
-        await loadStudentInfo();
-    }
-    if (document.getElementById('gradeLevel') && !document.getElementById('assessmentType')) {
-        loadAssessmentOptions();
-    }
-    if (document.getElementById('numeracyStatus') && document.getElementById('gradeLevel')) {
-        displayResults();
-    }
-    if (document.getElementById('certificateDate')) {
-        await populateCertificate();
-    }
-});
