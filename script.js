@@ -30,14 +30,17 @@ async function displayStudentName() {
     await loadCSV();
     const lrn = localStorage.getItem('studentLRN');
     const student = studentData.find(s => s.LRN === lrn);
-    const studentName = document.getElementById('student-name');
-    if (studentName) {
-        studentName.textContent = student ? `${student.Name}` : 'Student';
-    }
+    const welcomeMessage = document.getElementById('welcome-message');
+    welcomeMessage.textContent = student ? `${student.Name}` : 'Student';
 }
 
 // Save selected grade and redirect to assessment.html
-function setupGradeSelection() {
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('welcome-message')) {
+        displayStudentName();
+    }
+
+    // Grade selection
     const gradeLinks = document.querySelectorAll('.grade-link');
     gradeLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -47,10 +50,8 @@ function setupGradeSelection() {
             window.location.href = 'assessment.html';
         });
     });
-}
 
-// Save selected assessment type and redirect to results.html
-function setupAssessmentSelection() {
+    // Assessment type selection
     const assessmentLinks = document.querySelectorAll('.assessment-link');
     assessmentLinks.forEach(link => {
         link.addEventListener('click', (e) => {
@@ -60,15 +61,25 @@ function setupAssessmentSelection() {
             window.location.href = 'results.html';
         });
     });
-}
+
+    if (document.getElementById('gradeLevel')) {
+        loadAssessmentOptions();
+    }
+
+    if (document.getElementById('numeracyStatus')) {
+        displayResults();
+    }
+
+    if (document.getElementById('certificateDate')) {
+        populateCertificate();
+    }
+});
 
 // Display grade on assessment.html
 function loadAssessmentOptions() {
     const grade = localStorage.getItem('selectedGrade');
     const gradeLevelElement = document.getElementById('gradeLevel');
-    if (gradeLevelElement) {
-        gradeLevelElement.textContent = grade || 'N/A';
-    }
+    gradeLevelElement.textContent = grade || 'N/A';
 }
 
 // Display results on results.html
@@ -84,13 +95,13 @@ async function displayResults() {
         s.Assessment === assessment
     );
 
-    document.getElementById('studentName')?.textContent = student ? student.Name : 'Student not found';
-    document.getElementById('gradeLevel')?.textContent = grade || 'N/A';
-    document.getElementById('assessmentType')?.textContent = assessment || 'N/A';
-    document.getElementById('numeracyStatus')?.textContent = student ? student.Numeracy : 'No data available';
+    document.getElementById('studentName').textContent = student ? student.Name : 'Student not found';
+    document.getElementById('gradeLevel').textContent = grade || 'N/A';
+    document.getElementById('assessmentType').textContent = assessment || 'N/A';
+    document.getElementById('numeracyStatus').textContent = student ? student.Numeracy : 'No data available';
 }
 
-// Populate certificate on results.html
+// Populate certificate on results.html (certificate page)
 async function populateCertificate() {
     await loadCSV();
     const lrn = localStorage.getItem('studentLRN');
@@ -103,30 +114,8 @@ async function populateCertificate() {
         s.Assessment === assessment
     );
 
-    document.getElementById('studentName')?.textContent = student ? student.Name : 'Student not found';
-    document.getElementById('numeracyStatus')?.textContent = student ? student.Numeracy : 'N/A';
-    document.getElementById('assessmentType')?.textContent = assessment || 'N/A';
-    document.getElementById('certificateDate')?.textContent = "August 19–23, 2024";
+    document.getElementById('studentName').textContent = student ? student.Name : 'Student not found';
+    document.getElementById('numeracyStatus').textContent = student ? student.Numeracy : 'N/A';
+    document.getElementById('assessmentType').textContent = assessment || 'N/A';
+    document.getElementById('certificateDate').textContent = "August 19–23, 2024";
 }
-
-// Initialize everything when the DOM is ready
-document.addEventListener('DOMContentLoaded', () => {
-    if (document.getElementById('student-name')) {
-        displayStudentName();
-    }
-    if (document.querySelector('.grade-link')) {
-        setupGradeSelection();
-    }
-    if (document.querySelector('.assessment-link')) {
-        setupAssessmentSelection();
-    }
-    if (document.getElementById('gradeLevel')) {
-        loadAssessmentOptions();
-    }
-    if (document.getElementById('numeracyStatus')) {
-        displayResults();
-    }
-    if (document.getElementById('certificateDate')) {
-        populateCertificate();
-    }
-});
