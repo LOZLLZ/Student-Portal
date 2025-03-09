@@ -90,27 +90,30 @@ async function displayResults() {
     document.getElementById('numeracyStatus').textContent = student ? student.Numeracy : 'No data available.';
 }
 
-// Populate certificate on certificate.html
+// Populate certificate on results.html (certificate page)
 async function populateCertificate() {
     await loadCSV();
     const lrn = localStorage.getItem('studentLRN');
-    const student = studentData.find(s => s.LRN === lrn);
+    const assessment = localStorage.getItem('assessmentType');
+    const grade = localStorage.getItem('selectedGrade');
+
+    // Find student data matching LRN, grade, and assessment
+    const student = studentData.find(s => 
+        s.LRN === lrn &&
+        s.Grade === grade &&
+        s.Assessment === assessment
+    );
 
     if (student) {
-        document.getElementById('studentName').textContent = student.Name;
-        document.getElementById('numeracyStatus').textContent = student.Numeracy;
-        document.getElementById('assessmentType').textContent = localStorage.getItem('assessmentType') || 'Pre-Test';
-        document.getElementById('certificateDate').textContent = 'August 19–23, 2024';
+        document.getElementById('studentName').textContent = student.Name || 'Student not found';
+        document.getElementById('numeracyStatus').textContent = student.Numeracy || 'N/A';
+        document.getElementById('assessmentType').textContent = assessment || 'N/A';
+        document.getElementById('certificateDate').textContent = "August 19–23, 2024";
     } else {
+        console.warn('No matching student data found.');
         document.getElementById('studentName').textContent = 'Student not found';
         document.getElementById('numeracyStatus').textContent = 'N/A';
         document.getElementById('assessmentType').textContent = 'N/A';
         document.getElementById('certificateDate').textContent = '';
     }
-}
-
-// Save selected grade and redirect to assessment.html
-function selectGrade(grade) {
-    localStorage.setItem('selectedGrade', grade);
-    window.location.href = 'assessment.html';
 }
