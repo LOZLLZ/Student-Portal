@@ -3,56 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Numeracy Assessment Certificate</title>
+    <title>Certificate of Recognition</title>
     <link rel="stylesheet" href="style1.css">
 </head>
 <body>
+
     <div class="certificate">
-        <header>
-            <img src="deped_logo.png" alt="DepED Logo" class="logo">
-            <div class="school-info">
-                <h2>Republic of the Philippines</h2>
-                <h3>Department of Education</h3>
-                <p>Region IV-A CALABARZON</p>
-                <p>City Schools Division Office of Antipolo</p>
-                <h1>ANTIPOLO CITY NATIONAL SCIENCE AND TECHNOLOGY HIGH SCHOOL</h1>
-            </div>
-            <img src="school_logo.png" alt="School Logo" class="logo">
-        </header>
+        <div class="certificate-header">
+            <h2>Republic of the Philippines</h2>
+            <h3>Department of Education</h3>
+            <p>Region IV-A CALABARZON</p>
+            <p>City Schools Division Office of Antipolo</p>
+            <h4>ANTIPOLO CITY NATIONAL SCIENCE AND TECHNOLOGY HIGH SCHOOL</h4>
+        </div>
 
-        <main>
-            <p class="certify">This</p>
-            <h2 class="cert-title">Certificate of Recognition</h2>
-            <p class="presented">is presented to</p>
-            <h2 id="studentName">(NAME OF STUDENT)</h2>
-            <p class="description">
-                for being classified as a/an <strong><span id="numeracyStatus">AVERAGE NUMERATE</span></strong>
-                during the administration of the Numeracy Assessment
-                (<span id="assessmentType">Pre-Test</span>) held at Antipolo City National Science and Technology High School.
-            </p>
-            <p class="date">
-                Given this <span id="certificateDate">31st</span> day of January, 2025 at School Name.
-            </p>
-        </main>
+        <h1 class="certificate-title">Certificate of Recognition</h1>
 
-        <footer>
+        <p class="presented-to">is presented to</p>
+        <h2 id="studentName">(NAME OF STUDENT)</h2>
+
+        <p class="description">
+            For being classified as a/an <strong><span id="numeracyStatus">AVERAGE NUMERATE</span></strong> 
+            during the administration of the Numeracy Assessment
+            (<span id="assessmentType">Pre-Test</span>) held at Antipolo City National Science and Technology High School.
+        </p>
+
+        <p class="date">
+            Given this <span id="certificateDate">31st</span> day of January, 2025 at Antipolo City National Science and Technology High School.
+        </p>
+
+        <div class="signature">
             <p class="school-head">JANICE P. MARAVILLA</p>
-            <p class="school-title">School Head</p>
-        </footer>
+            <p>School Head</p>
+        </div>
     </div>
 
-    <script>
-        // Get student data from localStorage
-        const studentName = localStorage.getItem('studentName') || '(NAME OF STUDENT)';
-        const numeracyStatus = localStorage.getItem('numeracyStatus') || 'AVERAGE NUMERATE';
-        const assessmentType = localStorage.getItem('assessmentType') || 'Pre-Test';
-        const certificateDate = localStorage.getItem('certificateDate') || '31st';
-
-        // Inject data into the certificate
-        document.getElementById('studentName').textContent = studentName;
-        document.getElementById('numeracyStatus').textContent = numeracyStatus;
-        document.getElementById('assessmentType').textContent = assessmentType;
-        document.getElementById('certificateDate').textContent = certificateDate;
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
