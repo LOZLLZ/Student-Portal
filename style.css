@@ -9,9 +9,19 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    flex-direction: column; /* Stack header and content */
     text-align: center;
-    padding: 2rem;
+}
+
+/* Container styling */
+.container {
+    width: 100%;
+    max-width: 1200px; /* Adjust this value as needed */
+    padding: 4rem; /* Space inside the container */
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    margin: 2rem; /* Space outside the container */
+    box-sizing: border-box;
 }
 
 /* Header styling */
@@ -24,6 +34,7 @@ body {
     justify-content: center;
     gap: 2rem;
     margin-bottom: 1.5rem;
+    flex-wrap: wrap;
 }
 
 .logo {
@@ -46,17 +57,20 @@ h1 {
     margin-bottom: 2.5rem;
 }
 
+h2 {
+    font-size: 2rem;
+    color: #1b5e20;
+    margin-bottom: 2rem;
+}
+
 /* Form styling */
 form {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    width: 100%;
     max-width: 500px;
-    padding: 2rem;
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    width: 100%;
+    margin: 0 auto;
 }
 
 input {
@@ -64,7 +78,6 @@ input {
     font-size: 1.5rem;
     border: 2px solid #4caf50;
     border-radius: 8px;
-    width: 100%;
     text-align: center;
 }
 
@@ -95,6 +108,15 @@ button:hover {
 
     h1 {
         font-size: 2.2rem;
+    }
+
+    h2 {
+        font-size: 1.8rem;
+    }
+
+    .container {
+        padding: 2rem;
+        margin: 1rem;
     }
 
     form {
