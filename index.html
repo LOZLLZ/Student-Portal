@@ -17,20 +17,19 @@
         <h2 class="school-name">Antipolo City National Science And Technology High School</h2>
     </div>
 
-    <div class="container">
-        <h1>Numeracy Level Portal</h1>
-        <form id="lrnForm">
-            <input type="text" id="lrn" name="lrn" placeholder="Enter your LRN" required>
-            <button type="submit">Submit</button>
-        </form>
-    </div>
+    <h1>Numeracy Level Portal</h1>
+    
+    <form id="lrnForm">
+        <input type="text" id="lrn" name="lrn" placeholder="Enter your LRN" required>
+        <button type="submit">Submit</button>
+    </form>
 
     <script>
         document.getElementById('lrnForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const lrn = document.getElementById('lrn').value;
-            localStorage.setItem('studentLRN', lrn); // Save LRN to local storage
-            window.location.href = 'student.html'; // Redirect to student page
+            localStorage.setItem('studentLRN', lrn);
+            window.location.href = 'student.html';
         });
     </script>
 </body>
