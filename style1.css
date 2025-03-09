@@ -1,7 +1,7 @@
 /* General Styling */
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #e8f5e9;
+    background-color: #fff;
     margin: 0;
     padding: 0;
     display: flex;
@@ -11,18 +11,6 @@ body {
     text-align: center;
 }
 
-.container {
-    width: 100%;
-    max-width: 1200px; /* Adjust this value as needed */
-    padding: 4rem; /* Space inside the container */
-    background: white;
-    border-radius: 10px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-    margin: 2rem; /* Space outside the container */
-    box-sizing: border-box;
-}
-
-/* Fullscreen Certificate */
 .certificate {
    width: 100vw;
     height: 100vh;
@@ -33,7 +21,6 @@ body {
     justify-content: center;
 }
 
-/* School Logo */
 .logo {
     display: flex;
     justify-content: center;
