@@ -7,22 +7,24 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="header">
-        <div class="logo-container">
-            <img src="logo1.png" alt="Logo 1" class="logo">
-            <img src="logo2.png" alt="Logo 2" class="logo">
-            <img src="logo3.png" alt="Logo 3" class="logo">
-            <img src="logo4.png" alt="Logo 4" class="logo">
+    <div class="container">
+        <div class="header">
+            <div class="logo-container">
+                <img src="logo1.png" alt="Logo 1" class="logo">
+                <img src="logo2.png" alt="Logo 2" class="logo">
+                <img src="logo3.png" alt="Logo 3" class="logo">
+                <img src="logo4.png" alt="Logo 4" class="logo">
+            </div>
+            <h1 class="school-name">Antipolo City National Science And Technology High School</h1>
         </div>
-        <h1 class="school-name">Antipolo City National Science And Technology High School</h2>
-    </div>
 
-    <h2>Numeracy Level Portal</h1>
-    
-    <form id="lrnForm">
-        <input type="text" id="lrn" name="lrn" placeholder="Enter your LRN" required>
-        <button type="submit">Submit</button>
-    </form>
+        <h2>Numeracy Level Portal</h2>
+        
+        <form id="lrnForm">
+            <input type="text" id="lrn" name="lrn" placeholder="Enter your LRN" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
 
     <script>
         document.getElementById('lrnForm').addEventListener('submit', function(e) {
@@ -33,4 +35,3 @@
         });
     </script>
 </body>
-</html>
