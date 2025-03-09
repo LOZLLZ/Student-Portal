@@ -25,7 +25,7 @@ async function loadCSV() {
     }
 }
 
-// Display student's name on student.html
+// Display student's name without "Welcome,"
 async function displayStudentName() {
     await loadCSV();
     const lrn = localStorage.getItem('studentLRN');
