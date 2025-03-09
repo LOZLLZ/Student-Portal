@@ -9,36 +9,31 @@ body {
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    flex-direction: column;
+    flex-direction: column; /* Stack header and content */
     text-align: center;
+    padding: 2rem;
 }
 
 /* Header styling */
 .header {
-    margin-bottom: 2rem;
+    margin-bottom: 3rem;
 }
 
 .logo-container {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-    flex-wrap: wrap;
-    margin-bottom: 1rem;
+    gap: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .logo {
-    width: 80px;
+    width: 100px;
     height: auto;
     border-radius: 10px;
-    transition: transform 0.3s ease;
-}
-
-.logo:hover {
-    transform: scale(1.1);
 }
 
 .school-name {
-    font-size: 2rem;
+    font-size: 2.2rem;
     color: #1b5e20;
     font-weight: bold;
     margin: 0;
@@ -46,98 +41,69 @@ body {
 
 /* Headings */
 h1 {
-    font-size: 2.5rem;
-    font-weight: bold;
     color: #1b5e20;
-    margin-bottom: 1rem;
-}
-
-h2 {
-    font-size: 1.8rem;
-    font-weight: bold;
-    color: #4caf50;
-    margin-bottom: 2rem;
+    font-size: 3rem;
+    margin-bottom: 2.5rem;
 }
 
 /* Form styling */
 form {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 2rem;
     width: 100%;
-    max-width: 400px;
+    max-width: 500px;
     padding: 2rem;
     background: white;
-    border-radius: 15px;
-    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
-/* Input styling */
 input {
-    padding: 1rem;
-    font-size: 1.2rem;
+    padding: 1.2rem;
+    font-size: 1.5rem;
     border: 2px solid #4caf50;
-    border-radius: 25px;
+    border-radius: 8px;
     width: 100%;
     text-align: center;
-    color: #1b5e20;
-    background-color: #f1f8f2;
-    outline: none;
-    transition: border-color 0.3s ease;
 }
 
-input::placeholder {
-    color: #388e3c;
-}
-
-input:focus {
-    border-color: #2e7d32;
-}
-
-/* Button styling */
 button {
     background-color: #4caf50;
     color: white;
     border: none;
-    padding: 1rem;
-    font-size: 1.2rem;
-    font-weight: bold;
-    border-radius: 30px;
+    padding: 1.2rem;
+    font-size: 1.5rem;
     cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    width: 100%;
+    border-radius: 8px;
+    transition: background-color 0.3s;
 }
 
 button:hover {
     background-color: #388e3c;
-    transform: translateY(-3px);
 }
 
 /* Responsive design */
 @media (max-width: 768px) {
     .logo {
-        width: 60px;
+        width: 80px;
     }
 
     .school-name {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
     h1 {
-        font-size: 2rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
+        font-size: 2.2rem;
     }
 
     form {
         padding: 1.5rem;
+        gap: 1.5rem;
     }
 
-    input,
-    button {
-        font-size: 1rem;
-        padding: 0.8rem;
+    input, button {
+        font-size: 1.2rem;
+        padding: 1rem;
     }
 }
