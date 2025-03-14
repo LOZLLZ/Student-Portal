@@ -1,4 +1,4 @@
-v// Array to store CSV data
+// Array to store CSV data
 let studentData = [];
 
 // Load CSV data
