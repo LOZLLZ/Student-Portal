@@ -17,10 +17,9 @@ async function loadCSV() {
                 Name: Name?.trim(),
                 Grade: Grade?.trim(),
                 Assessment: Assessment?.trim(),
-                Numeracy: Numeracy?.trim()
+                Numeracy: Numeracy?.trim() || 'Not Assessed' // Handle empty Numeracy
             };
         }).filter(student => student.LRN); // Remove empty rows
-        console.log('CSV Data Loaded:', studentData); // Debugging
     } catch (error) {
         console.error('Error loading CSV:', error);
         alert('Failed to load student data. Please try again.');
@@ -87,15 +86,20 @@ async function populateCertificates() {
     const grade = localStorage.getItem('selectedGrade');
     const assessment = localStorage.getItem('assessmentType');
 
-    console.log('Assessment Type:', assessment); // Debugging
+    // Ensure CSV "Pre", "Mid", "Post" map correctly to certificates
+    const assessmentMapping = {
+        'Pre': 'Pre-Test',
+        'Mid': 'Midyear',
+        'Post': 'Post-Test'
+    };
+
+    const mappedAssessment = assessmentMapping[assessment] || assessment;
 
     const student = studentData.find(s =>
         s.LRN === lrn &&
         s.Grade === grade &&
         s.Assessment === assessment
     );
-
-    console.log('Student data for certificate:', student); // Debugging
 
     const name = student ? student.Name : 'Student not found';
     const numeracy = student ? student.Numeracy : 'N/A';
@@ -106,15 +110,15 @@ async function populateCertificates() {
         cert.style.display = 'none';
     });
 
-    // Match the correct certificate by assessment type
-    if (assessment === 'Pre-Test') {
+    // Show the correct certificate
+    if (mappedAssessment === 'Pre-Test') {
         showCertificate('preTestCertificate', name, numeracy, date);
-    } else if (assessment === 'Midyear') {
+    } else if (mappedAssessment === 'Midyear') {
         showCertificate('midYearCertificate', name, numeracy, date);
-    } else if (assessment === 'Post-Test') {
+    } else if (mappedAssessment === 'Post-Test') {
         showCertificate('postTestCertificate', name, numeracy, date);
     } else {
-        console.warn('Invalid assessment type:', assessment);
+        console.warn('Invalid assessment type:', mappedAssessment);
     }
 }
 
