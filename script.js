@@ -6,7 +6,7 @@ async function loadCSV() {
     try {
         const response = await fetch('data.csv');
         if (!response.ok) {
-            throw new Error('Failed to fetch CSV');
+            throw new Error('Failed to fetch CSV data');
         }
         const data = await response.text();
         const rows = data.split('\n').slice(1); // Skip header row
@@ -20,12 +20,14 @@ async function loadCSV() {
                 Numeracy: Numeracy?.trim()
             };
         }).filter(student => student.LRN); // Remove empty rows
+        console.log('CSV Data Loaded:', studentData); // Debugging
     } catch (error) {
         console.error('Error loading CSV:', error);
+        alert('Failed to load student data. Please try again.');
     }
 }
 
-// Display student's name without "Welcome,"
+// Display student's name
 async function displayStudentName() {
     await loadCSV();
     const lrn = localStorage.getItem('studentLRN');
@@ -37,9 +39,9 @@ async function displayStudentName() {
 }
 
 // Save selected grade and redirect to assessment.html
-document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', async () => {
     if (document.getElementById('welcome-message')) {
-        displayStudentName();
+        await displayStudentName();
     }
 
     // Grade selection
@@ -65,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     if (document.querySelector('.certificate-container')) {
-        populateCertificates();
+        await populateCertificates();
     }
 });
 
@@ -91,29 +93,38 @@ async function populateCertificates() {
         s.Assessment === assessment
     );
 
+    console.log('Student data for certificate:', student); // Debugging
+
     const name = student ? student.Name : 'Student not found';
     const numeracy = student ? student.Numeracy : 'N/A';
     const date = "August 19–23, 2024";
 
-    // Show/hide certificates based on assessment type
+    // Ensure all certificates start hidden
     document.querySelectorAll('.certificate-container').forEach(cert => {
-        cert.classList.remove('active');
+        cert.style.display = 'none';
     });
 
+    // Show the relevant certificate
     if (assessment === 'Pre-Test') {
-        document.getElementById('preTestCertificate').classList.add('active');
-        document.getElementById('studentNamePre').textContent = name;
-        document.getElementById('numeracyStatusPre').textContent = numeracy;
-        document.getElementById('certificateDatePre').textContent = date;
+        showCertificate('preTestCertificate', name, numeracy, date);
     } else if (assessment === 'Midyear') {
-        document.getElementById('midYearCertificate').classList.add('active');
-        document.getElementById('studentNameMid').textContent = name;
-        document.getElementById('numeracyStatusMid').textContent = numeracy;
-        document.getElementById('certificateDateMid').textContent = date;
+        showCertificate('midYearCertificate', name, numeracy, date);
     } else if (assessment === 'Post-Test') {
-        document.getElementById('postTestCertificate').classList.add('active');
-        document.getElementById('studentNamePost').textContent = name;
-        document.getElementById('numeracyStatusPost').textContent = numeracy;
-        document.getElementById('certificateDatePost').textContent = date;
+        showCertificate('postTestCertificate', name, numeracy, date);
+    } else {
+        console.warn('Invalid assessment type:', assessment);
+    }
+}
+
+// Helper function to show certificates
+function showCertificate(certId, name, numeracy, date) {
+    const certificate = document.getElementById(certId);
+    if (certificate) {
+        certificate.style.display = 'block';
+        certificate.querySelector('.student-name').textContent = name;
+        certificate.querySelector('.numeracy-status').textContent = numeracy;
+        certificate.querySelector('.certificate-date').textContent = date;
+    } else {
+        console.error('Certificate not found:', certId);
     }
 }
