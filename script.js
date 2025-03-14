@@ -104,7 +104,7 @@ async function populateCertificates() {
         cert.style.display = 'none';
     });
 
-    // Show the relevant certificate
+    // Show the correct certificate based on the assessment type
     if (assessment === 'Pre-Test') {
         showCertificate('preTestCertificate', name, numeracy, date);
     } else if (assessment === 'Midyear') {
@@ -116,14 +116,25 @@ async function populateCertificates() {
     }
 }
 
-// Helper function to show certificates
+// Helper function to show certificates and set their content
 function showCertificate(certId, name, numeracy, date) {
     const certificate = document.getElementById(certId);
     if (certificate) {
-        certificate.style.display = 'block';
-        certificate.querySelector('.student-name').textContent = name;
-        certificate.querySelector('.numeracy-status').textContent = numeracy;
-        certificate.querySelector('.certificate-date').textContent = date;
+        certificate.classList.add('active'); // Show certificate
+        // Update content dynamically
+        if (certId === 'preTestCertificate') {
+            document.getElementById('studentNamePre').textContent = name;
+            document.getElementById('numeracyStatusPre').textContent = numeracy;
+            document.getElementById('certificateDatePre').textContent = date;
+        } else if (certId === 'midYearCertificate') {
+            document.getElementById('studentNameMid').textContent = name;
+            document.getElementById('numeracyStatusMid').textContent = numeracy;
+            document.getElementById('certificateDateMid').textContent = date;
+        } else if (certId === 'postTestCertificate') {
+            document.getElementById('studentNamePost').textContent = name;
+            document.getElementById('numeracyStatusPost').textContent = numeracy;
+            document.getElementById('certificateDatePost').textContent = date;
+        }
     } else {
         console.error('Certificate not found:', certId);
     }
