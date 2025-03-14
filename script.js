@@ -17,7 +17,7 @@ async function loadCSV() {
                 Name: Name?.trim(),
                 Grade: Grade?.trim(),
                 Assessment: Assessment?.trim(),
-                Numeracy: Numeracy?.trim() || 'Not Assessed' // Handle empty Numeracy
+                Numeracy: Numeracy?.trim() || 'Not Assessed'
             };
         }).filter(student => student.LRN); // Remove empty rows
     } catch (error) {
@@ -43,7 +43,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         await displayStudentName();
     }
 
-    // Grade selection
     document.querySelectorAll('.grade-link').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -52,7 +51,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
     });
 
-    // Assessment type selection
     document.querySelectorAll('.assessment-link').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
@@ -79,6 +77,13 @@ function loadAssessmentOptions() {
     }
 }
 
+// Dates for each assessment type
+const assessmentDates = {
+    'Pre': 'August 19–23, 2024',
+    'Mid': 'December 2–6, 2024',
+    'Post': 'March 10–14, 2025'
+};
+
 // Populate certificates dynamically
 async function populateCertificates() {
     await loadCSV();
@@ -86,36 +91,35 @@ async function populateCertificates() {
     const grade = localStorage.getItem('selectedGrade');
     const assessment = localStorage.getItem('assessmentType');
 
-    // Ensure CSV "Pre", "Mid", "Post" map correctly to certificates
+    // Ensure CSV "Pre", "Mid", "Post" map correctly
     const assessmentMapping = {
-        'Pre': 'Pre-Test',
-        'Mid': 'Midyear',
-        'Post': 'Post-Test'
+        'Pre': 'Pre',
+        'Mid': 'Mid',
+        'Post': 'Post'
     };
 
-    const mappedAssessment = assessmentMapping[assessment] || assessment;
+    const mappedAssessment = assessmentMapping[assessment];
 
     const student = studentData.find(s =>
         s.LRN === lrn &&
         s.Grade === grade &&
-        s.Assessment === assessment
+        s.Assessment === mappedAssessment
     );
 
     const name = student ? student.Name : 'Student not found';
     const numeracy = student ? student.Numeracy : 'N/A';
-    const date = "August 19–23, 2024";
+    const date = assessmentDates[mappedAssessment] || 'N/A';
 
-    // Ensure all certificates start hidden
     document.querySelectorAll('.certificate-container').forEach(cert => {
         cert.style.display = 'none';
     });
 
     // Show the correct certificate
-    if (mappedAssessment === 'Pre-Test') {
+    if (mappedAssessment === 'Pre') {
         showCertificate('preTestCertificate', name, numeracy, date);
-    } else if (mappedAssessment === 'Midyear') {
+    } else if (mappedAssessment === 'Mid') {
         showCertificate('midYearCertificate', name, numeracy, date);
-    } else if (mappedAssessment === 'Post-Test') {
+    } else if (mappedAssessment === 'Post') {
         showCertificate('postTestCertificate', name, numeracy, date);
     } else {
         console.warn('Invalid assessment type:', mappedAssessment);
