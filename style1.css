@@ -11,9 +11,18 @@ body {
     text-align: center;
 }
 
+.container {
+    max-width: 900px;
+    width: 100%;
+    padding: 2rem;
+    background-color: #f8f8f8;
+    border: 2px solid #000;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
 .certificate {
-   width: 100vw;
-    height: 100vh;
+    width: 100%;
     padding: 3rem;
     box-sizing: border-box;
     display: flex;
