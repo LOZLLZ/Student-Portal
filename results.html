@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Certificate of Recognition</title>
+    <title>Numeracy Assessment Certificates</title>
     <link rel="stylesheet" href="style1.css">
     <style>
         .logo {
@@ -13,42 +13,100 @@
         }
 
         .logo img {
-            width: 120px; /* Adjust size as needed */
+            width: 120px;
             height: auto;
+        }
+
+        .certificate-container {
+            display: none; /* All hidden by default */
+        }
+
+        .certificate {
+            border: 2px solid #000;
+            padding: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .active {
+            display: block; /* Show only the selected certificate */
         }
     </style>
 </head>
 <body>
-    
-    <div class="certificate">
 
-        <!-- School Logo -->
+    <!-- Pre-Test Certificate -->
+    <div id="preTestCertificate" class="certificate-container certificate active">
         <div class="logo">
             <img src="logo4.png" alt="School Logo">
         </div>
 
-        <!-- Certificate Header -->
         <div class="certificate-header">
             <h4>ANTIPOLO CITY NATIONAL SCIENCE AND TECHNOLOGY HIGH SCHOOL</h4>
         </div>
 
-        <!-- Title -->
         <h1 class="certificate-title">Certificate of Recognition</h1>
 
         <p class="presented-to">is presented to</p>
-        <h2 id="studentName">(NAME OF STUDENT)</h2>
+        <h2 id="studentNamePre">(NAME OF STUDENT)</h2>
 
-        <!-- Description -->
         <p class="description">
-            for being classified as a/an <strong><span id="numeracyStatus">AVERAGE NUMERATE</span></strong> 
-            during the administration of the (<span id="assessmentType">Pre-Test</span>) Numeracy Assessment
-            held at Antipolo City National Science and Technology High School.
+            for being classified as a/an <strong><span id="numeracyStatusPre">NUMERACY LEVEL</span></strong> 
+            during the administration of the Pre-Test Numeracy Assessment.
         </p>
 
         <p class="date">
-            Given this <span id="certificateDate">31st</span> at Antipolo City National Science and Technology High School.
+            Given this <span id="certificateDatePre">DATE</span>.
+        </p>
+    </div>
+
+    <!-- Midyear Certificate -->
+    <div id="midYearCertificate" class="certificate-container certificate">
+        <div class="logo">
+            <img src="logo4.png" alt="School Logo">
+        </div>
+
+        <div class="certificate-header">
+            <h4>ANTIPOLO CITY NATIONAL SCIENCE AND TECHNOLOGY HIGH SCHOOL</h4>
+        </div>
+
+        <h1 class="certificate-title">Certificate of Recognition</h1>
+
+        <p class="presented-to">is presented to</p>
+        <h2 id="studentNameMid">(NAME OF STUDENT)</h2>
+
+        <p class="description">
+            for being classified as a/an <strong><span id="numeracyStatusMid">NUMERACY LEVEL</span></strong> 
+            during the administration of the Midyear Numeracy Assessment.
         </p>
 
+        <p class="date">
+            Given this <span id="certificateDateMid">DATE</span>.
+        </p>
+    </div>
+
+    <!-- Post-Test Certificate -->
+    <div id="postTestCertificate" class="certificate-container certificate">
+        <div class="logo">
+            <img src="logo4.png" alt="School Logo">
+        </div>
+
+        <div class="certificate-header">
+            <h4>ANTIPOLO CITY NATIONAL SCIENCE AND TECHNOLOGY HIGH SCHOOL</h4>
+        </div>
+
+        <h1 class="certificate-title">Certificate of Recognition</h1>
+
+        <p class="presented-to">is presented to</p>
+        <h2 id="studentNamePost">(NAME OF STUDENT)</h2>
+
+        <p class="description">
+            for being classified as a/an <strong><span id="numeracyStatusPost">NUMERACY LEVEL</span></strong> 
+            during the administration of the Post-Test Numeracy Assessment.
+        </p>
+
+        <p class="date">
+            Given this <span id="certificateDatePost">DATE</span>.
+        </p>
     </div>
 
     <script src="script.js"></script>
