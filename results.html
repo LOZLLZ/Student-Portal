@@ -5,109 +5,84 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Numeracy Assessment Certificates</title>
     <link rel="stylesheet" href="style1.css">
-    <style>
-        .logo {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .logo img {
-            width: 120px;
-            height: auto;
-        }
-
-        .certificate-container {
-            display: none; /* All hidden by default */
-        }
-
-        .certificate {
-            border: 2px solid #000;
-            padding: 3rem;
-            margin-bottom: 3rem;
-            text-align: center;
-        }
-
-        .active {
-            display: block; /* Show only the selected certificate */
-        }
-    </style>
 </head>
 <body>
 
-    <!-- Pre-Test Certificate -->
-    <div id="preTestCertificate" class="certificate-container certificate">
-        <div class="logo">
-            <img src="logo4.png" alt="School Logo">
+    <div class="container">
+        <!-- Pre-Test Certificate -->
+        <div id="preTestCertificate" class="certificate-container certificate">
+            <div class="logo">
+                <img src="logo4.png" alt="School Logo">
+            </div>
+
+            <div class="certificate-header">
+                <h4>ANTIPOLO CITY NATIONAL SCIENCE AND TECHNOLOGY HIGH SCHOOL</h4>
+            </div>
+
+            <h1 class="certificate-title">Certificate of Recognition</h1>
+
+            <p class="presented-to">is presented to</p>
+            <h2 id="studentName">(NAME OF STUDENT)</h2>
+
+            <p class="description">
+                for being classified as a/an <strong><span id="numeracyStatus">NUMERACY LEVEL</span></strong> 
+                during the administration of the <strong>Pre-Test</strong> Numeracy Assessment held at Antipolo City National Science and Technology High School.
+            </p>
+
+            <p class="date">
+                Given this <span id="certificateDate">DATE</span>.
+            </p>
         </div>
 
-        <div class="certificate-header">
-            <h4>ANTIPOLO CITY NATIONAL SCIENCE AND TECHNOLOGY HIGH SCHOOL</h4>
+        <!-- Midyear Certificate -->
+        <div id="midYearCertificate" class="certificate-container certificate">
+            <div class="logo">
+                <img src="logo4.png" alt="School Logo">
+            </div>
+
+            <div class="certificate-header">
+                <h4>ANTIPOLO CITY NATIONAL SCIENCE AND TECHNOLOGY HIGH SCHOOL</h4>
+            </div>
+
+            <h1 class="certificate-title">Certificate of Recognition</h1>
+
+            <p class="presented-to">is presented to</p>
+            <h2 id="studentName">(NAME OF STUDENT)</h2>
+
+            <p class="description">
+                for being classified as a/an <strong><span id="numeracyStatus">NUMERACY LEVEL</span></strong> 
+                during the administration of the <strong>Midyear</strong> Numeracy Assessment held at Antipolo City National Science and Technology High School.
+            </p>
+
+            <p class="date">
+                Given this <span id="certificateDate">DATE</span>.
+            </p>
         </div>
 
-        <h1 class="certificate-title">Certificate of Recognition</h1>
+        <!-- Post-Test Certificate -->
+        <div id="postTestCertificate" class="certificate-container certificate">
+            <div class="logo">
+                <img src="logo4.png" alt="School Logo">
+            </div>
 
-        <p class="presented-to">is presented to</p>
-        <h2 id="studentName">(NAME OF STUDENT)</h2>
+            <div class="certificate-header">
+                <h4>ANTIPOLO CITY NATIONAL SCIENCE AND TECHNOLOGY HIGH SCHOOL</h4>
+            </div>
 
-        <p class="description">
-            for being classified as a/an <strong><span id="numeracyStatus">NUMERACY LEVEL</span></strong> 
-            during the administration of the <strong>Pre-Test</strong> Numeracy Assessment held at Antipolo City National Science and Technology High School.
-        </p>
+            <h1 class="certificate-title">Certificate of Recognition</h1>
 
-        <p class="date">
-            Given this <span id="certificateDate">DATE</span>.
-        </p>
-    </div>
+            <p class="presented-to">is presented to</p>
+            <h2 id="studentName">(NAME OF STUDENT)</h2>
 
-    <!-- Midyear Certificate -->
-    <div id="midYearCertificate" class="certificate-container certificate">
-        <div class="logo">
-            <img src="logo4.png" alt="School Logo">
+            <p class="description">
+                for being classified as a/an <strong><span id="numeracyStatus">NUMERACY LEVEL</span></strong> 
+                during the administration of the <strong>Post-Test</strong> Numeracy Assessment held at Antipolo City National Science and Technology High School.
+            </p>
+
+            <p class="date">
+                Given this <span id="certificateDate">DATE</span>.
+            </p>
         </div>
-
-        <div class="certificate-header">
-            <h4>ANTIPOLO CITY NATIONAL SCIENCE AND TECHNOLOGY HIGH SCHOOL</h4>
-        </div>
-
-        <h1 class="certificate-title">Certificate of Recognition</h1>
-
-        <p class="presented-to">is presented to</p>
-        <h2 id="studentName">(NAME OF STUDENT)</h2>
-
-        <p class="description">
-            for being classified as a/an <strong><span id="numeracyStatus">NUMERACY LEVEL</span></strong> 
-            during the administration of the <strong>Midyear</strong> Numeracy Assessment held at Antipolo City National Science and Technology High School.
-        </p>
-
-        <p class="date">
-            Given this <span id="certificateDate">DATE</span>.
-        </p>
-    </div>
-
-    <!-- Post-Test Certificate -->
-    <div id="postTestCertificate" class="certificate-container certificate">
-        <div class="logo">
-            <img src="logo4.png" alt="School Logo">
-        </div>
-
-        <div class="certificate-header">
-            <h4>ANTIPOLO CITY NATIONAL SCIENCE AND TECHNOLOGY HIGH SCHOOL</h4>
-        </div>
-
-        <h1 class="certificate-title">Certificate of Recognition</h1>
-
-        <p class="presented-to">is presented to</p>
-        <h2 id="studentName">(NAME OF STUDENT)</h2>
-
-        <p class="description">
-            for being classified as a/an <strong><span id="numeracyStatus">NUMERACY LEVEL</span></strong> 
-            during the administration of the <strong>Post-Test</strong> Numeracy Assessment held at Antipolo City National Science and Technology High School.
-        </p>
-
-        <p class="date">
-            Given this <span id="certificateDate">DATE</span>.
-        </p>
     </div>
 
     <script src="script.js"></script>
