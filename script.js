@@ -1,4 +1,4 @@
-// Array to store CSV data
+v// Array to store CSV data
 let studentData = [];
 
 // Load CSV data
@@ -31,7 +31,9 @@ async function displayStudentName() {
     const lrn = localStorage.getItem('studentLRN');
     const student = studentData.find(s => s.LRN === lrn);
     const welcomeMessage = document.getElementById('welcome-message');
-    welcomeMessage.textContent = student ? student.Name : 'Student';
+    if (welcomeMessage) {
+        welcomeMessage.textContent = student ? student.Name : 'Student';
+    }
 }
 
 // Save selected grade and redirect to assessment.html
@@ -41,23 +43,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Grade selection
-    const gradeLinks = document.querySelectorAll('.grade-link');
-    gradeLinks.forEach(link => {
+    document.querySelectorAll('.grade-link').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const selectedGrade = link.getAttribute('data-grade');
-            localStorage.setItem('selectedGrade', selectedGrade);
+            localStorage.setItem('selectedGrade', link.getAttribute('data-grade'));
             window.location.href = 'assessment.html';
         });
     });
 
     // Assessment type selection
-    const assessmentLinks = document.querySelectorAll('.assessment-link');
-    assessmentLinks.forEach(link => {
+    document.querySelectorAll('.assessment-link').forEach(link => {
         link.addEventListener('click', (e) => {
             e.preventDefault();
-            const selectedAssessment = link.getAttribute('data-assessment');
-            localStorage.setItem('assessmentType', selectedAssessment);
+            localStorage.setItem('assessmentType', link.getAttribute('data-assessment'));
             window.location.href = 'results.html';
         });
     });
@@ -66,12 +64,8 @@ document.addEventListener('DOMContentLoaded', () => {
         loadAssessmentOptions();
     }
 
-    if (document.getElementById('numeracyStatus')) {
-        displayResults();
-    }
-
-    if (document.getElementById('certificateDate')) {
-        populateCertificate();
+    if (document.querySelector('.certificate-container')) {
+        populateCertificates();
     }
 });
 
@@ -79,11 +73,13 @@ document.addEventListener('DOMContentLoaded', () => {
 function loadAssessmentOptions() {
     const grade = localStorage.getItem('selectedGrade');
     const gradeLevelElement = document.getElementById('gradeLevel');
-    gradeLevelElement.textContent = grade || 'N/A';
+    if (gradeLevelElement) {
+        gradeLevelElement.textContent = grade || 'N/A';
+    }
 }
 
-// Display results on results.html
-async function displayResults() {
+// Populate certificates dynamically
+async function populateCertificates() {
     await loadCSV();
     const lrn = localStorage.getItem('studentLRN');
     const grade = localStorage.getItem('selectedGrade');
@@ -95,27 +91,29 @@ async function displayResults() {
         s.Assessment === assessment
     );
 
-    document.getElementById('studentName').textContent = student ? student.Name : 'Student not found';
-    document.getElementById('gradeLevel').textContent = grade || 'N/A';
-    document.getElementById('assessmentType').textContent = assessment || 'N/A';
-    document.getElementById('numeracyStatus').textContent = student ? student.Numeracy : 'No data available';
-}
+    const name = student ? student.Name : 'Student not found';
+    const numeracy = student ? student.Numeracy : 'N/A';
+    const date = "August 19–23, 2024";
 
-// Populate certificate on results.html (certificate page)
-async function populateCertificate() {
-    await loadCSV();
-    const lrn = localStorage.getItem('studentLRN');
-    const grade = localStorage.getItem('selectedGrade');
-    const assessment = localStorage.getItem('assessmentType');
+    // Show/hide certificates based on assessment type
+    document.querySelectorAll('.certificate-container').forEach(cert => {
+        cert.classList.remove('active');
+    });
 
-    const student = studentData.find(s =>
-        s.LRN === lrn &&
-        s.Grade === grade &&
-        s.Assessment === assessment
-    );
-
-    document.getElementById('studentName').textContent = student ? student.Name : 'Student not found';
-    document.getElementById('numeracyStatus').textContent = student ? student.Numeracy : 'N/A';
-    document.getElementById('assessmentType').textContent = assessment || 'N/A';
-    document.getElementById('certificateDate').textContent = "August 19–23, 2024";
+    if (assessment === 'Pre-Test') {
+        document.getElementById('preTestCertificate').classList.add('active');
+        document.getElementById('studentNamePre').textContent = name;
+        document.getElementById('numeracyStatusPre').textContent = numeracy;
+        document.getElementById('certificateDatePre').textContent = date;
+    } else if (assessment === 'Midyear') {
+        document.getElementById('midYearCertificate').classList.add('active');
+        document.getElementById('studentNameMid').textContent = name;
+        document.getElementById('numeracyStatusMid').textContent = numeracy;
+        document.getElementById('certificateDateMid').textContent = date;
+    } else if (assessment === 'Post-Test') {
+        document.getElementById('postTestCertificate').classList.add('active');
+        document.getElementById('studentNamePost').textContent = name;
+        document.getElementById('numeracyStatusPost').textContent = numeracy;
+        document.getElementById('certificateDatePost').textContent = date;
+    }
 }
